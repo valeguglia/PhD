@@ -1,0 +1,44 @@
+\documentclass[14pt]{report}
+\usepackage{extsizes}
+\usepackage[paperwidth=21cm,paperheight=21cm,left=0.2cm,right=0.2cm,top=0.5cm,bottom=0.5cm]{geometry}
+\usepackage{pxfonts}
+\pagestyle{empty}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[table]{xcolor}
+\definecolor{lightgray}{gray}{0.87}
+\begin{document}
+\begin{table}
+  \begin{center}
+  \rowcolors{2}{lightgray}{}
+  \resizebox*{\textwidth}{!}{
+    \begin{tabular}{lp{2.57cm}p{2.57cm}}
+      \toprule
+  Dataset     & fitNNLO2   & prof comp CT14NNLO  \\ 
+      \midrule
+  HERA1+2 CCep & 46 / 39& -   \\ 
+  HERA1+2 CCem & 54 / 42& -   \\ 
+  HERA1+2 NCem & 233 / 159& -   \\ 
+  HERA1+2 NCep 820 & 56 / 61& -   \\ 
+  HERA1+2 NCep 920 & 366 / 317& -   \\ 
+  HERA1+2 NCep 460 & 198 / 177& -   \\ 
+  HERA1+2 NCep 575 & 193 / 221& -   \\ 
+  CMS inclusive jets 13 TeV, |y| < 0.5 & 6.8 / 22& 0 / 22  \\ 
+  CMS inclusive jets 13 TeV, 0.5 < |y| < 1.0 & 18 / 21& 0 / 21  \\ 
+  CMS inclusive jets 13 TeV, 1.0 < |y| < 1.5 & 14 / 19& 0 / 19  \\ 
+  CMS inclusive jets 13 TeV, 1.5 < |y| < 2.0 & 9.6 / 16& 0 / 16  \\ 
+  Correlated $\chi^2$  & 101& 18  \\ 
+  Log penalty $\chi^2$  & -9.49& -1.34  \\ 
+  \rowcolor{white}
+      \midrule
+  Total $\chi^2$ / dof  & 1285 / 1081& 84 / 78  \\ 
+  \rowcolor{white}
+      \midrule
+  $\chi^2$ p-value  & 0.00 & 0.31   \\ 
+      \bottomrule
+    \end{tabular}
+  }
+  \end{center}
+\end{table}
+
+\end{document}

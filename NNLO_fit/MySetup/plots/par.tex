@@ -1,0 +1,53 @@
+\documentclass[14pt]{report}
+\usepackage{extsizes}
+\usepackage[paperwidth=21cm,paperheight=21cm,left=0.2cm,right=0.2cm,top=0.2cm,bottom=0.2cm]{geometry}
+\usepackage{pxfonts}
+\pagestyle{empty}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[table]{xcolor}
+\definecolor{lightgray}{gray}{0.85}
+\usepackage{color}
+\begin{document}
+\begin{table}
+  \begin{center}
+  \rowcolors{2}{lightgray}{}
+  \resizebox*{\textwidth}{!}{
+    \begin{tabular}{lp{4.45cm}p{4.45cm}}
+      \toprule
+ Parameter   & fitNNLO2 & prof comp CT14NNLO  \\ 
+      \midrule
+  'Adbar' & $0.115 \pm 0.014$& -   \\ 
+  'Adv' & $\textcolor{blue}{ 1.0000 }$& -   \\ 
+  'Ag' & $\textcolor{blue}{ 1.0000 }$& -   \\ 
+  'Agp' & $\textcolor{blue}{ 0.07831 }$& -   \\ 
+  'Aubar' & $\textcolor{blue}{ 0.1613 }$& -   \\ 
+  'Auv' & $\textcolor{blue}{ 1.0000 }$& -   \\ 
+  'Bdbar' & $-0.165 \pm 0.019$& -   \\ 
+  'Bdv' & $0.733 \pm 0.080$& -   \\ 
+  'Bg' & $-0.131 \pm 0.025$& -   \\ 
+  'Bgp' & $-0.477 \pm 0.032$& -   \\ 
+  'Bubar' & $\textcolor{blue}{ -0.1273 }$& -   \\ 
+  'Buv' & $0.707 \pm 0.039$& -   \\ 
+  'Cdbar' & $5.8 \pm 1.3$& -   \\ 
+  'Cdv' & $3.56 \pm 0.30$& -   \\ 
+  'Cg' & $4.45 \pm 0.34$& -   \\ 
+  'Cgp' & $\textcolor{blue}{ 25.00 }$& -   \\ 
+  'Cubar' & $6.63 \pm 0.75$& -   \\ 
+  'Cuv' & $\textcolor{blue}{ 4.770 }$& -   \\ 
+  'Dubar' & $5.7 \pm 2.5$& -   \\ 
+  'Euv' & $14.0 \pm 1.9$& -   \\ 
+  'alphas' & $0.11994 \pm 0.00014$& -   \\ 
+  'fs' & $\textcolor{blue}{ 0.4000 }$& -   \\ 
+      \midrule
+  \rowcolor{white}
+ Fit status   & converged & \textcolor{red}{ not-a-fit }  \\ 
+  \rowcolor{white}
+ Uncertainties   & migrad-hesse & not-a-fit  \\ 
+      \bottomrule
+    \end{tabular}
+  }
+  \end{center}
+\end{table}
+
+\end{document}
