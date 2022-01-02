@@ -1,0 +1,9 @@
+executable          = cond.sh
+transfer_executable = True
+universe            = vanilla
+output              = scan.out
+error               = scan.error 
+log                 = scan.log 
++RequestRuntime     = 100000
+request_memory      = 10GB
+queue 1

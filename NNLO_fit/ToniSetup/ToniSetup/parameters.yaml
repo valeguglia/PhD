@@ -1,0 +1,104 @@
+Minimizer: MINUIT # CERES
+MINUIT:
+  Commands: |
+    set str 2
+    call fcn 1
+    migrad 200000
+    hesse
+    call fcn 3
+  doErrors : Pumplin # Pumplin # Hesse # None
+
+Parameters:
+  Ag   :  DEPENDENT
+  Bg   : [ 0.160419, 0.046633 ]
+  Cg   : [ 9.717853, 0.589561 ]
+  Dg   : [ -4.976231, 1.088133 ]
+  Eg   : [ 33.597231, 6.536425 ]
+  Auv  :  DEPENDENT
+  Buv  : [ 0.722554, 0.053023 ]
+  Cuv  : [ 4.884185, 0.116766 ]
+  Duv  : [ 0.000000, 0.000000 ]
+  Euv  : [ 13.108509, 2.951513 ]
+  Adv  :  DEPENDENT
+  Bdv  : [ 0.798332, 0.136934 ]
+  Cdv  : [ 3.897003, 0.597062 ]
+  Ddv  : [ 0.000000, 0.000000 ]
+  Edv  : [ 0.000000, 0.000000 ]
+  Aubar: [ 0.0, 0.0 ] # not used (Aubar=Adbar)
+  Bubar: [ 0.0, 0.0  ] # not used (Bubar=Bdbar)
+  Cubar: [ 7.101385, 1.224270 ]
+  Dubar: [ 3.438942, 2.070668 ]
+  Eubar: [ 0.000000, 0.000000 ]
+  Adbar: [ 0.159419, 0.012130 ]
+  Bdbar: [ -0.121286, 0.009992 ]
+  Cdbar: [ 8.841468, 2.303347 ]
+  Ddbar: [ 0.000000, 0.000000 ]
+  Edbar: [ 0.000000, 0.1 ]
+  fs   : [ 0.400000, 0.000000 ]
+  alphas: [ 0.116489, 0.001310 ]
+
+Parameterisations:
+  par_uv:
+    class: HERAPDF
+    parameters: [Auv,Buv,Cuv,Duv,Euv]
+  par_dv:
+    class: HERAPDF
+    parameters: [Adv,Bdv,Cdv,Ddv,Edv]
+  par_ubar:
+    class: HERAPDF
+    parameters: [Adbar,Bdbar,Cubar,Dubar,Eubar]
+  par_dbar:
+    class: HERAPDF
+    parameters: [Adbar,Bdbar,Cdbar,Ddbar,Edbar]
+  par_s:
+    class: Expression
+    expression: "Adbar*fs/(1-fs)*(x^Bdbar*(1-x)^Cdbar)*(1+Ddbar*x+Edbar*x^2)"
+  par_g:
+    class: HERAPDF
+    parameters: [Ag,Bg,Cg,Dg,Eg]
+
+DefaultDecomposition: proton
+Decompositions:
+  proton:
+    class: UvDvUbarDbarS
+    xuv: par_uv
+    xdv: par_dv
+    xubar: par_ubar
+    xdbar: par_dbar
+    xs: par_s
+    xg: par_g
+
+DefaultEvolution: proton-QCDNUM
+
+Evolutions:
+  proton-QCDNUM:
+    ? !include evolutions/QCDNUM.yaml
+    decomposition: proton #this could be omitted, as the default decomposition is set
+    # The following allows QCDNUM to read PDFs from other evolutions:
+    # EvolutionCopy: "proton-LHAPDF"
+  proton-LHAPDF:
+    class: LHAPDF
+    set: "CT14nlo"
+    member: 0
+
+Q0 : 1.378404875209 # Initial scale =sqrt(1.9)
+
+? !include constants.yaml
+
+byReaction:
+  RT_DISNC:
+    ? !include reactions/RT_DISNC.yaml
+  FONLL_DISNC:
+    ? !include reactions/FONLL_DISNC.yaml
+  FONLL_DISCC:
+    ? !include reactions/FONLL_DISCC.yaml
+  APPLgrid:
+    ? !include reactions/APPLgrid.yaml
+
+# Specify HF scheme used for DIS NC processes:
+hf_scheme_DISNC :
+  defaultValue : 'RT_DISNC'        # global specification
+
+# Specify HF scheme used for DIS CC processes:
+hf_scheme_DISCC :
+  defaultValue : 'BaseDISCC'       # global specification
